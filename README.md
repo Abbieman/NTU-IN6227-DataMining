@@ -1,1 +1,1 @@
-# ntu_IN6227_dataMining
+# ntu_in6227_dataMining
