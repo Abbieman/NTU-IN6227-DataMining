@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
@@ -105,12 +104,25 @@ preprocess = ColumnTransformer(
 )
 
 # --------------------------
-# 5. Model Definitions
+# 5. Model Definitions with Hyperparameters
 # --------------------------
 models = {
-    "Logistic Regression": LogisticRegression(max_iter=5000, solver="saga"),
-    "Decision Tree": DecisionTreeClassifier(random_state=42),
-    "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42),
+    "Decision Tree": DecisionTreeClassifier(
+        random_state=42,
+        max_depth=15,
+        min_samples_split=10,
+        min_samples_leaf=5,
+        criterion="gini",
+    ),
+    "Random Forest": RandomForestClassifier(
+        n_estimators=150,
+        random_state=42,
+        max_depth=15,
+        min_samples_split=10,
+        min_samples_leaf=5,
+        max_features="sqrt",
+        bootstrap=True,
+    ),
 }
 
 # --------------------------
@@ -132,8 +144,8 @@ for name, clf in models.items():
 
     # print results
     print(f"\n=== {name} ===")
-    print(f"训练时间: {end_train - start_train:.3f} 秒")
-    print(f"预测时间: {end_pred - start_pred:.3f} 秒")
+    print(f"Training time: {end_train - start_train:.3f} s")
+    print(f"Prediction time: {end_pred - start_pred:.3f} s")
     print("Accuracy:", accuracy_score(y_test, y_pred))
     print(classification_report(y_test, y_pred))
 
@@ -146,7 +158,7 @@ for name, clf in models.items():
     )
     plt.plot([0, 1], [0, 1], color="navy", lw=2, linestyle="--")
     plt.xlabel("False Positive Rate")
-    plt.ylabel("True Positive Rate (Recall)")
+    plt.ylabel("True Positive Rate")
     plt.title(f"ROC Curve - {name}")
     plt.legend(loc="lower right")
     plt.tight_layout()
