@@ -1,4 +1,4 @@
-# NUT-IN6227-DataMining
+# NTU-IN6227-DataMining
 
 ### Setup
 
