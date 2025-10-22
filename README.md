@@ -30,7 +30,7 @@ The goal is to predict whether an individual’s income exceeds $50K per year ba
 
 This assignment demonstrates how ensemble learning (Random Forest) improves prediction stability and accuracy over a single Decision Tree by reducing overfitting.
 
-##### Assignment 2: Association Rule Mining — Comparing Apriori Algorithm with Brute-Force Approach
+### Assignment 2: Association Rule Mining — Comparing Apriori Algorithm with Brute-Force Approach
 
 This assignment aims to gain practical experience with association rule mining algorithms and to compare the performance of an optimized algorithm (Apriori) with a brute-force baseline.
 
